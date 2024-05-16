@@ -1,0 +1,92 @@
+version: "3"
+services:
+  docs-service:
+    build:
+      context: ./backend-docs
+    restart: always
+    expose:
+      - "3001"
+    ports:
+      - 3001:3001
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3001/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  users-service:
+    build:
+      context: ./backend-users
+    restart: always
+    expose:
+      - "3002"
+    env_file:
+      - ./backend-users/.env
+    ports:
+      - 3002:3002
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3002/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  tasks-service:
+    build:
+      context: ./backend-tasks
+    restart: always
+    expose:
+      - "3003"
+    env_file:
+      - ./backend-tasks/.env
+    ports:
+      - 3003:3003
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3003/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  gateway:
+    build: ./backend-gateway
+    ports:
+      - "3000:80"
+    depends_on:
+      users-service:
+        condition: service_healthy
+      tasks-service:
+        condition: service_healthy
+
+  postgres-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: "Ponderada1M10"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    volumes:
+      # So that our database's state is persisted locally
+      - ./database:/docker-entrypoint-initdb.d
+      # Where our data will be persisted
+      - my-db:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d Ponderada1M10"]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+
+# Names our volume
+volumes:
+  my-db:
