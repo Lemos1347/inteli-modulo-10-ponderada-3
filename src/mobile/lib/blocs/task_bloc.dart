@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'task_event.dart';
 import 'task_state.dart';
-import '../models/task.dart';
 import '../services/task_service.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {

@@ -10,14 +10,17 @@ Este é um aplicativo de gerenciamento de tarefas desenvolvido em Flutter. O obj
 
 ## Funcionalidades
 
-- Listar todas as tarefas
-- Adicionar uma nova tarefa
-- Editar uma tarefa existente
-- Deletar uma tarefa
+- Fazer login do usuário
+- Criar um usuário
+- Tirar uma foto
 
 ### Funcionamento
 
 https://github.com/Lemos1347/inteli-modulo-10-ponderada-2/assets/99190347/a52b8e7b-3e95-4e8f-82c9-170177b075e9
+
+### Logs
+
+![img](./static/logs_print.png)
 
 ## Instalação
 
@@ -27,8 +30,8 @@ Para executar este projeto, você precisará ter o Flutter instalado em sua máq
 > Esse projeto foi desenvolvido pensando em dispositivos mobile, por isso, é recomendado que você tenha um emulador ou um dispositivo físico para executar o aplicativo.
 
 > [!IMPORTANT]
-> Este projeto mobile para funcionar precisa que você mude o ip em que está rodando o backend, para isso vá até o arquivo [task_service.dart](./src/mobile/lib/services/task_service.dart) e mude a variável `baseUrl` em:  
-> `final String baseUrl = 'http://192.168.15.46:3001';`
+> Este projeto mobile para funcionar precisa que você mude o ip em que está rodando o backend, para isso vá até o arquivo [user_service.dart](./src/mobile/lib/services/user_service.dart) e mude a variável `baseUrl` em:  
+> `final String baseUrl = 'http://{your_ipv4}:3000';`
 > para o ip que está rodando o backend.
 
 1. Clone o repositório:
@@ -64,9 +67,9 @@ Este diretório contém todo o código fonte do aplicativo Flutter, com o seguin
 - [lib/screens/](./src/mobile/lib/screens/): Telas do aplicativo.
 - [lib/services/](./src/mobile/lib/services/): Serviços para comunicação com APIs externas.
 
-### [backend-async](./src/backend/)
+### [src](./src/)
 
-Este diretório contém todo o código fonte do backend em python3. Dentro de seu diretório é possi1vel encontrar um [readme](./src/backend-async/README.md) com as suas instruções detalhadas.
+Este diretório contém todo o código fonte tanto do backend em python3 quanto do app mobile (sendo que o app se encontra totalmente dentro da pasta /mobile). O backend foi dividido entre microserviços e cada serviço pode ser encontrado dentro da sua respectiva pasta: `backend-{microserviço}`, sendo o [backend-gateway](./src/backend-gateway/) contendo toda a lógica de roteamento dos microserviços com `nginx`.
 
 ### [database](./src/database/)
 
@@ -80,4 +83,4 @@ Este arquivo contém a configuração do docker-compose para subir o banco de da
 docker-compose up
 ```
 
-Pronto! Agora você tem um backend rodando em `localhost:3001`e um banco de dados postgres configurado!
+Pronto! Agora você tem um backend rodando em `localhost:3000`e um banco de dados postgres configurado!

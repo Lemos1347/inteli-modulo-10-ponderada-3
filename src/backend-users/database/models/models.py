@@ -1,9 +1,8 @@
 import uuid
 
+from database.base_model import Base
 from sqlalchemy import UUID, Enum, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-
-from database.base_model import Base
 
 
 class User(Base):
@@ -12,7 +11,9 @@ class User(Base):
         UUID(as_uuid=True), primary_key=True, default=uuid.uuid4
     )
     name: Mapped[str] = mapped_column(String, nullable=False)
-    role: Mapped[Enum] = mapped_column(Enum("user", "admin", name="user_role"))
+    email: Mapped[str] =mapped_column(String, nullable=False)
+    password: Mapped[str] =mapped_column(String, nullable=False)
+    role: Mapped[Enum] = mapped_column(Enum("user", "admin", name="user_role"), default="admin")
 
     # Relationships
     tasks: Mapped[list["Task"]] = relationship(back_populates="user")

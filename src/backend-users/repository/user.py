@@ -18,8 +18,8 @@ def get_user_by_id(id: str) -> User | None:
     return user
 
 
-def create_user(user_name: str, user_role: str):
-    user = User(name=user_name, role=user_role)
+def create_user(user_name: str, user_email: str, user_password):
+    user = User(name=user_name, email=user_email, password=user_password)
 
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -27,3 +27,17 @@ def create_user(user_name: str, user_role: str):
     session.add(user)
     session.commit()
     session.close()
+
+
+def login_user(user_email: str, user_password) -> bool:
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    result = session.execute(select(User).filter_by(email=user_email))
+
+    user = result.scalars().first()
+
+    if user is None:
+        return False
+
+    return user.password == user_password

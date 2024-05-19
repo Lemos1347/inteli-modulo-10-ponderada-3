@@ -11,6 +11,8 @@ CREATE TYPE user_role AS ENUM ('user', 'admin');
 CREATE TABLE "User" (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     role user_role NOT NULL
 );
 
@@ -23,6 +25,6 @@ CREATE TABLE "Task" (
     FOREIGN KEY (user_id) REFERENCES "User" (id)
 );
 
-INSERT INTO "User" (id, name, role)
-VALUES ('03fd5486-2030-47cf-bf14-0e569d64fad9', 'Murilo', 'admin');
+INSERT INTO "User" (id, name, email, password, role)
+VALUES ('03fd5486-2030-47cf-bf14-0e569d64fad9', 'Murilo', 'murilo@email.com', '123', 'admin');
 
