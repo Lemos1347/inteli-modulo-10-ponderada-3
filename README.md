@@ -1,4 +1,4 @@
-# Inteli módulo 10 ponderada 2 - App Gerenciador de Tarefas
+# Inteli módulo 10 ponderada 3 - App processador de imagens
 
 Este é um aplicativo de gerenciamento de tarefas desenvolvido em Flutter. O objetivo deste aplicativo é fornecer uma interface simples para gerenciar tarefas diárias.
 
@@ -16,7 +16,7 @@ Este é um aplicativo de gerenciamento de tarefas desenvolvido em Flutter. O obj
 
 ### Funcionamento
 
-https://github.com/Lemos1347/inteli-modulo-10-ponderada-2/assets/99190347/a52b8e7b-3e95-4e8f-82c9-170177b075e9
+https://github.com/Lemos1347/inteli-modulo-10-ponderada-3/assets/99190347/4c87c14e-7f77-4728-8ada-566c76493ea9
 
 ### Logs
 
@@ -37,8 +37,8 @@ Para executar este projeto, você precisará ter o Flutter instalado em sua máq
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/Lemos1347/inteli-modulo-10-ponderada-2.git
-   cd inteli-modulo-10-ponderada-2
+   git clone https://github.com/Lemos1347/inteli-modulo-10-ponderada-3.git
+   cd inteli-modulo-10-ponderada-3
    ```
 
 2. Instale as dependências:
