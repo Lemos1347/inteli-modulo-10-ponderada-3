@@ -16,7 +16,7 @@ Este é um aplicativo de gerenciamento de tarefas desenvolvido em Flutter. O obj
 
 ### Funcionamento
 
-https://github.com/Lemos1347/inteli-modulo-10-ponderada-3/assets/99190347/4c87c14e-7f77-4728-8ada-566c76493ea9
+https://github.com/Lemos1347/inteli-modulo-10-ponderada-3/assets/99190347/adfc4269-4e49-4134-aaec-953120794e53
 
 ### Logs
 
