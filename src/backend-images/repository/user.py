@@ -1,9 +1,8 @@
+from database.engine import engine
+from database.models import User
 from flask import session
 from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker
-
-from database.engine import engine
-from database.models import User
 
 
 def get_user_by_id(id: str) -> User | None:
@@ -30,7 +29,7 @@ def create_user(user_name: str, user_email: str, user_password):
     session.close()
 
 
-def login_user(user_email: str, user_password) -> tuple[bool, str]:
+def login_user(user_email: str, user_password) -> bool:
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -39,6 +38,6 @@ def login_user(user_email: str, user_password) -> tuple[bool, str]:
     user = result.scalars().first()
 
     if user is None:
-        return False, ""
+        return False
 
-    return user.password == user_password, str(user.id)
+    return user.password == user_password

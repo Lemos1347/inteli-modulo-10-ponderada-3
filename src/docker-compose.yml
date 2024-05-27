@@ -1,21 +1,21 @@
 version: "3"
 services:
-  docs-service:
-    build:
-      context: ./backend-docs
-    restart: always
-    expose:
-      - "3001"
-    ports:
-      - 3001:3001
-    depends_on:
-      postgres-db:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:3001/health || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+  # docs-service:
+  #   build:
+  #     context: ./backend-docs
+  #   restart: always
+  #   expose:
+  #     - "3001"
+  #   ports:
+  #     - 3001:3001
+  #   depends_on:
+  #     postgres-db:
+  #       condition: service_healthy
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "curl -f http://localhost:3001/health || exit 1"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
 
   users-service:
     build:
@@ -36,16 +36,19 @@ services:
       timeout: 5s
       retries: 5
 
-  tasks-service:
+  images-service:
     build:
-      context: ./backend-tasks
+      context: ./backend-images
+      dockerfile: ./Dockerfile
     restart: always
     expose:
       - "3003"
     env_file:
-      - ./backend-tasks/.env
+      - ./backend-images/.env
     ports:
       - 3003:3003
+    volumes:
+      - ./backend-images/temp:/build/temp
     depends_on:
       postgres-db:
         condition: service_healthy
@@ -62,7 +65,7 @@ services:
     depends_on:
       users-service:
         condition: service_healthy
-      tasks-service:
+      images-service:
         condition: service_healthy
 
   postgres-db:

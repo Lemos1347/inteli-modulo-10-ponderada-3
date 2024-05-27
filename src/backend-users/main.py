@@ -2,11 +2,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+import datetime
+
+import jwt
 from flask import Flask, jsonify, request
+
 from middleware import admin_auth, auth
 from repository import user as user_repository
 
 app = Flask(__name__)
+
+SECRET_KEY = "secret"
 
 
 @app.get("/health")
@@ -51,10 +57,18 @@ def login_user_route():
         if type(user_email) != str or type(user_password) != str:
             return jsonify(message="Uncompleted body"), 400
 
-        if user_repository.login_user(
+        logged, user_id = user_repository.login_user(
             user_email=user_email, user_password=user_password
-        ):
-            return jsonify(message="User loged in with success!"), 200
+        )
+
+        if logged:
+            payload = {
+                "user_id": user_id,
+                "exp": datetime.datetime.utcnow()
+                + datetime.timedelta(hours=1),  # Token expira em 1 hora
+            }
+            token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
+            return jsonify(message="User loged in with success!", token=token), 200
 
         return jsonify(message="Not allowed!"), 401
     else:
