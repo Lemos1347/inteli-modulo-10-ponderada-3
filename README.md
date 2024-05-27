@@ -1,18 +1,19 @@
 # Inteli módulo 10 ponderada 3 - App processador de imagens
 
-Este é um aplicativo de gerenciamento de tarefas desenvolvido em Flutter. O objetivo deste aplicativo é fornecer uma interface simples para gerenciar tarefas diárias.
+Este é um aplicativo de gerenciamento de tarefas desenvolvido em Flutter. O objetivo deste aplicativo é fornecer uma interface simples para enviar imagens e conseguir a sua versão preto e branco.
 
 ## Tecnologias Utilizadas
 
 - Flutter
 - Dart
-- Flutter Bloc para gerenciamento de estado
+- Flask (Python)
 
 ## Funcionalidades
 
 - Fazer login do usuário
 - Criar um usuário
 - Tirar uma foto
+- Vizualizar a foto processada
 
 ### Funcionamento
 
@@ -84,3 +85,5 @@ docker-compose up
 ```
 
 Pronto! Agora você tem um backend rodando em `localhost:3000`e um banco de dados postgres configurado!
+
+_Obs.: caso queira testar com as fotos existentes, pode acessar com o usuário henrique@email e a senha 123_

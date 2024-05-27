@@ -27,4 +27,6 @@ CREATE TABLE "Task" (
 
 INSERT INTO "User" (id, name, email, password, role)
 VALUES ('03fd5486-2030-47cf-bf14-0e569d64fad9', 'Murilo', 'murilo@email.com', '123', 'admin');
+VALUES ('6163800e-c152-45ab-9ff9-aec906d57027', 'henrique', 'henrique@email', '123', 'admin');
+
 
