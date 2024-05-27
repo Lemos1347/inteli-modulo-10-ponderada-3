@@ -1,6 +1,6 @@
 # Inteli módulo 10 ponderada 3 - App processador de imagens
 
-Este é um aplicativo de gerenciamento de tarefas desenvolvido em Flutter. O objetivo deste aplicativo é fornecer uma interface simples para enviar imagens e conseguir a sua versão preto e branco.
+Este é um aplicativo de gerenciamento de tarefas desenvolvido em Flutter. O objetivo deste aplicativo é fornecer uma interface simples para enviar imagens e conseguir a sua versão preto e branco. Para isso, o aplicativo se comunica com um backend em Flask que processa as imagens, as armazena e notifica o usuário por meio de uma notificação qunado a imagem está pronta.
 
 ## Tecnologias Utilizadas
 
@@ -71,6 +71,9 @@ Este diretório contém todo o código fonte do aplicativo Flutter, com o seguin
 ### [src](./src/)
 
 Este diretório contém todo o código fonte tanto do backend em python3 quanto do app mobile (sendo que o app se encontra totalmente dentro da pasta /mobile). O backend foi dividido entre microserviços e cada serviço pode ser encontrado dentro da sua respectiva pasta: `backend-{microserviço}`, sendo o [backend-gateway](./src/backend-gateway/) contendo toda a lógica de roteamento dos microserviços com `nginx`.
+
+> [!NOTE]
+> Para essa solução é utilizado apenas os microserviços [backend-gateway](./src/backend-gateway/), [backend-users](./src/backend-users/) e [backend-images](./src/backend-images/).
 
 ### [database](./src/database/)
 
